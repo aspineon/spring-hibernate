@@ -3,19 +3,12 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <!-- Parent -->
-    <parent>
-        <groupId>org.jboss.arquillian.showcase</groupId>
-        <artifactId>arquillian-showcase-spring</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
-
     <!-- Model Version -->
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.arquillian.showcase</groupId>
     <artifactId>arquillian-showcase-spring-hibernate</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Arquillian Showcase Spring: Hibernate</name>
@@ -24,7 +17,12 @@
 
     <!-- Properties -->
     <properties>
+  		<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 
+   	   <version.arquillian>1.1.12.Final</version.arquillian>
+ 	    <version.arquillian.spring>1.0.0.Beta1</version.arquillian.spring>
+        <version.arquillian.transaction>1.0.0.Alpha1</version.arquillian.transaction>
     </properties>
 
     <!-- Dependencies -->
@@ -33,70 +31,164 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>3.1.1.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
+            <version>3.1.1.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
+            <version>3.1.1.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
+            <version>5.2.8.Final</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.6-Final</version>
         </dependency>
 
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
+            <version>1.1.12.Final</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-service-deployer-spring-3</artifactId>
+            <version>${version.arquillian.spring}</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-service-integration-spring-inject</artifactId>
+            <version>${version.arquillian.spring}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-transaction-spring</artifactId>
+            <version>${version.arquillian.spring}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-transaction-api</artifactId>
+            <version>1.0.3.Final</version>
             <scope>test</scope>
         </dependency>
+
+<!-- 		<dependency> -->
+<!-- 		  <groupId>org.arquillian.cube</groupId> -->
+<!-- 		  <artifactId>arquillian-cube-docker</artifactId> -->
+<!-- 		  <version>1.0.0.Alpha18</version> -->
+<!-- 		  <scope>test</scope> -->
+<!-- 		</dependency> -->
+
+	<dependency>
+		<groupId>org.arquillian.cube</groupId>
+		<artifactId>arquillian-cube-docker</artifactId>
+		<version>1.0.0.Alpha18</version>
+		<scope>test</scope>
+	</dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.8.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>1.4.193</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+   <dependencies>
+     <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>1.1.4.Final</version>
+        <scope>import</scope>
+        <type>pom</type>
+    </dependency>
+   </dependencies>
+</dependencyManagement>
+
+    <profiles>
+       <profile>
+            <id>jbossas-remote-7</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <type>pom</type>
+                    <scope>provided</scope>
+                    <version>3.0.3.Final</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <version>7.2.0.Final</version>
+ <!--    <version>7.5.7.Final-redhat-3</version>  -->
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.protocol</groupId>
+                    <artifactId>arquillian-protocol-servlet</artifactId>
+                    <scope>test</scope>
+                    <version>1.1.12.Final</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+
+  <repositories>
+        <repository>
+            <id>Maven Central</id>
+            <name>Maven Central</name>
+            <url>http://central.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>JBoss Repository</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>SpringSource Repository</id>
+            <name>SpringSource Repository</name>
+            <url>http://repo.springsource.org/release</url>
+        </repository>
+    </repositories>
+
 
 </project>

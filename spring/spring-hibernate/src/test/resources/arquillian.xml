@@ -7,18 +7,53 @@
 
     <defaultProtocol type="Servlet 3.0"/>
 
-    <!-- Managed container settings -->
-    <container qualifier="jbossas-managed" default="true">
-        <configuration>
-            <property name="jbossHome">target/jboss-as-7.1.1.Final</property>
-            <property name="outputToConsole">true</property>
-        </configuration>
-    </container>
+  <extension qualifier="docker">
+      <property name="serverVersion">1.13</property>
+      <property name="serverUri">http://localhost:4243</property>
+     <!-- <property name="definitionFormat">CUBE</property>  -->
+    <!--   <property name="dockerContainersFile">/home/scott/dev/docker/testing/docker-compose.yml</property> -->
+    <property name="autoStartContainers">web,db</property>
+    <property name="dockerContainers">
+      web:
+        image: eap-test
+        portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]
+        ports:
+          - 8080:8080
+          - 9990:9990
+          - 9999:9999
+        await:
+          strategy: polling
+          sleepPollingTime: 10
+          iterations: 3
+        depends_on:
+          db
+      db:
+        image: postgres
+        portBindings: [5432->5432/tcp]
+        environment:
+          - POSTGRES_USER=test_user
+          - POSTGRES_PASSWORD=password
+          - POSTGRES_DB=test_db
+        ports:
+          - 5432:5432
+    </property>
+  </extension>
 
     <!-- Spring extension settings -->
     <extension qualifier="spring-deployer">
         <!-- Disables the auto package allowing to add all the dependencies through the test -->
         <property name="autoPackage">false</property>
     </extension>
+
+
+    <container qualifier="web" default="true">
+     <configuration>
+        <property name="providerUrl">jnp://test.example.com:1099</property>
+     </configuration>
+     <protocol type="Servlet 3.0">
+        <property name="host">172.18.0.3</property>
+        <property name="port">8181</property>
+     </protocol>
+    </container>
 
 </arquillian>
