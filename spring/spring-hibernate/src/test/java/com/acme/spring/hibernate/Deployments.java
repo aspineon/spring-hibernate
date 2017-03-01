@@ -23,8 +23,7 @@ import com.acme.spring.hibernate.service.StockService;
 import com.acme.spring.hibernate.service.impl.DefaultStockService;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -94,10 +93,6 @@ public final class Deployments {
      * @return the resolved files
      */
     public static List<File> resolveDependencies(String artifactName) {
-        MavenDependencyResolver mvnResolver = DependencyResolvers.use(MavenDependencyResolver.class);
-
-        mvnResolver.loadMetadataFromPom("pom.xml");
-
-        return Arrays.asList(mvnResolver.artifacts(artifactName).resolveAsFiles());
+    	return Arrays.asList( Maven.resolver().loadPomFromFile("pom.xml").resolve().withTransitivity().asFile());
     }
 }
