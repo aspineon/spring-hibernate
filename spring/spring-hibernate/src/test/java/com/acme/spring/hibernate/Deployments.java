@@ -79,8 +79,9 @@ public final class Deployments {
         files.addAll(resolveDependencies("org.springframework:spring-context:4.3.4.RELEASE"));
         files.addAll(resolveDependencies("org.springframework:spring-orm:4.3.4.RELEASE"));
         files.addAll(resolveDependencies("org.springframework:spring-tx:4.3.4.RELEASE"));
-        //files.addAll(resolveDependencies("org.hibernate:hibernate-core:5.0.9.Final-redhat-1"));
-        files.addAll(resolveDependencies("org.hibernate:hibernate-annotations:3.5.6-Final"));
+        files.addAll(resolveDependencies("org.hibernate:hibernate-core:5.0.9.Final-redhat-1"));
+        //files.addAll(resolveDependencies("org.hibernate:hibernate-annotations:3.5.6-Final"));
+        files.addAll(resolveDependencies("org.hibernate.common:hibernate-commons-annotations:5.0.1.Final-redhat-2"));
         files.addAll(resolveDependencies("org.javassist:javassist:3.18.1.GA-redhat-2"));
 
         return files.toArray(new File[files.size()]);
