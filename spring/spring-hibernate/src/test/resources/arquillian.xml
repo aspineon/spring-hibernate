@@ -17,14 +17,15 @@
     <property name="dockerContainers">
       web:
         image: eap-test
-        portBindings: [8080->8080/tcp, 9990->9990/tcp]
+        portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]
         await:
           strategy: static
           ip: localhost
-          ports: [9990]
+          ports: [8080,9990,9999]
         ports:
           - 8080:8080
           - 9990:9990
+          - 9999:9999
         depends_on: [db]
       db:
         image: postgres
@@ -49,6 +50,8 @@
 		<configuration>
 			<property name="managementAddress">172.17.0.3</property>
 			<property name="managementPort">9999</property>
+            <property name="username">admin</property>
+            <property name="password">admin</property>
 		</configuration>
 	</container>
 

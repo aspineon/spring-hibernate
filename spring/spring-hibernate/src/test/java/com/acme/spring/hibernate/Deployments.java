@@ -93,6 +93,6 @@ public final class Deployments {
      * @return the resolved files
      */
     public static List<File> resolveDependencies(String artifactName) {
-    	return Arrays.asList( Maven.resolver().loadPomFromFile("pom.xml").resolve().withTransitivity().asFile());
+    	return Arrays.asList( Maven.resolver().loadPomFromFile("pom.xml").resolve(artifactName).withTransitivity().asFile());
     }
 }
