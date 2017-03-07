@@ -75,6 +75,7 @@ public final class Deployments {
 
         ArrayList<File> files = new ArrayList<File>();
 
+        files.addAll(resolveDependencies("org.springframework:spring-web:3.1.1.RELEASE"));
         files.addAll(resolveDependencies("org.springframework:spring-context:3.1.1.RELEASE"));
         files.addAll(resolveDependencies("org.springframework:spring-orm:3.1.1.RELEASE"));
         files.addAll(resolveDependencies("org.springframework:spring-tx:3.1.1.RELEASE"));
