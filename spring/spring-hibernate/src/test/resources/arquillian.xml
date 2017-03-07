@@ -10,22 +10,12 @@
   <extension qualifier="docker">
       <property name="serverVersion">1.13</property>
       <property name="serverUri">http://localhost:4243</property>
-     <!-- <property name="definitionFormat">CUBE</property>  -->
     <!--   <property name="dockerContainersFile">/home/scott/dev/docker/testing/docker-compose.yml</property> -->
     <property name="autoStartContainers">web,db</property>
-<!--   portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]  -->
     <property name="dockerContainers">
       web:
         image: eap-test
         portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]
-        await:
-          strategy: static
-          ip: localhost
-          ports: [8080,9990,9999]
-        ports:
-          - 8080:8080
-          - 9990:9990
-          - 9999:9999
         depends_on: [db]
       db:
         image: postgres
@@ -34,9 +24,15 @@
           - POSTGRES_USER=test_user
           - POSTGRES_PASSWORD=password
           - POSTGRES_DB=test_db
-        ports:
-          - 5432:5432
     </property>
+	<property name="cubeSpecificProperties">
+      web:
+        await:
+          strategy: log
+          match: regexp:.+JBoss EAP.+ started in .+ms.+
+          sleepPollingTime: 10
+          timeout: 50
+     </property>
   </extension>
 
     <!-- Spring extension settings -->
