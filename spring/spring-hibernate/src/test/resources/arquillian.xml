@@ -5,13 +5,14 @@
         http://jboss.org/schema/arquillian
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-    <defaultProtocol type="Servlet 3.0"/>
+   <!--  <defaultProtocol type="Servlet 3.0"/>  -->
 
   <extension qualifier="docker">
       <property name="serverVersion">1.13</property>
       <property name="serverUri">http://localhost:4243</property>
     <!--   <property name="dockerContainersFile">/home/scott/dev/docker/testing/docker-compose.yml</property> -->
     <property name="autoStartContainers">web,db</property>
+    <property name="connectionMode">STARTORCONNECTANDLEAVE</property>
     <property name="dockerContainers">
       web:
         image: eap-test
@@ -49,6 +50,14 @@
             <property name="username">admin</property>
             <property name="password">admin</property>
 		</configuration>
+
+        <!--  the protocol used by arquillian to execute the tests on JBOSS -->
+	     <protocol type="Servlet 3.0">
+	        <property name="host">172.17.0.3</property>
+	        <property name="port">8080</property>
+	     </protocol>
 	</container>
+
+
 
 </arquillian>

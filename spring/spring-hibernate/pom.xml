@@ -31,7 +31,7 @@
 <!--         <version.arquillian.transaction>1.0.0.Alpha1</version.arquillian.transaction> -->
 
         <!-- Test related -->
-        <version.junit_junit>4.8.1</version.junit_junit>
+        <version.junit_junit>4.12</version.junit_junit>
         <version.testng_testng>6.5.2</version.testng_testng>
         <version.mockito_all>1.8.3</version.mockito_all>
 
@@ -298,6 +298,34 @@
 		    <artifactId>jcl-over-slf4j</artifactId>
             <scope>test</scope>
 		</dependency>
+
+		<!--  for remote debug classpath -->
+		<!-- https://mvnrepository.com/artifact/org.wildfly.core/wildfly-io -->
+		<dependency>
+		    <groupId>org.wildfly.core</groupId>
+		    <artifactId>wildfly-controller</artifactId>
+		    <version>2.1.2.Final-redhat-1</version>
+		</dependency>
+        <dependency>
+            <groupId>org.wildfly.core</groupId>
+            <artifactId>wildfly-controller</artifactId>
+            <version>2.1.2.Final-redhat-1</version>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.arquillian.core/arquillian-core-impl-base -->
+		<dependency>
+		    <groupId>org.jboss.arquillian.core</groupId>
+		    <artifactId>arquillian-core-impl-base</artifactId>
+		    <version>1.1.12.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.arquillian.protocol/arquillian-protocol-servlet -->
+		<dependency>
+		    <groupId>org.jboss.arquillian.protocol</groupId>
+		    <artifactId>arquillian-protocol-servlet</artifactId>
+		    <version>1.1.12.Final</version>
+		</dependency>
+
+
+
     </dependencies>
 
     <profiles>
@@ -341,7 +369,7 @@
         <repository>
             <id>JBoss Repository</id>
             <name>JBoss Repository</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <url>   /</url>
             <releases>
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
@@ -352,6 +380,12 @@
             <name>SpringSource Repository</name>
             <url>http://repo.springsource.org/release</url>
         </repository>
+        <repository>
+            <id>redhat</id>
+            <name>REDHAT</name>
+            <url>https://maven.repository.redhat.com/ga</url>
+        </repository>
+
     </repositories>
 
 
