@@ -75,13 +75,13 @@ public final class Deployments {
 
         ArrayList<File> files = new ArrayList<File>();
 
-        files.addAll(resolveDependencies("org.springframework:spring-web:3.1.1.RELEASE"));
-        files.addAll(resolveDependencies("org.springframework:spring-context:3.1.1.RELEASE"));
-        files.addAll(resolveDependencies("org.springframework:spring-orm:3.1.1.RELEASE"));
-        files.addAll(resolveDependencies("org.springframework:spring-tx:3.1.1.RELEASE"));
-        files.addAll(resolveDependencies("org.hibernate:hibernate-core:3.6.0.Final"));
-        files.addAll(resolveDependencies("org.hibernate:hibernate-annotations:3.4.0.GA"));
-        files.addAll(resolveDependencies("javassist:javassist:3.6.0.GA"));
+        files.addAll(resolveDependencies("org.springframework:spring-web:4.3.4.RELEASE"));
+        files.addAll(resolveDependencies("org.springframework:spring-context:4.3.4.RELEASE"));
+        files.addAll(resolveDependencies("org.springframework:spring-orm:4.3.4.RELEASE"));
+        files.addAll(resolveDependencies("org.springframework:spring-tx:4.3.4.RELEASE"));
+        //files.addAll(resolveDependencies("org.hibernate:hibernate-core:5.0.9.Final-redhat-1"));
+        files.addAll(resolveDependencies("org.hibernate:hibernate-annotations:3.5.6-Final"));
+        files.addAll(resolveDependencies("org.javassist:javassist:3.18.1.GA-redhat-2"));
 
         return files.toArray(new File[files.size()]);
     }
