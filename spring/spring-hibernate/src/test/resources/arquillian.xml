@@ -14,17 +14,27 @@
     <property name="autoStartContainers">web,db</property>
     <property name="connectionMode">STARTORCONNECTANDLEAVE</property>
     <property name="dockerContainers">
-      web:
-        image: eap-test
-        portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]
-        depends_on: [db]
-      db:
-        image: postgres
-        portBindings: [5432->5432/tcp]
-        environment:
-          - POSTGRES_USER=test_user
-          - POSTGRES_PASSWORD=password
-          - POSTGRES_DB=test_db
+      version: "2"
+      networks:
+        mynetwork:
+          driver: bridge
+
+      services:
+        web:
+          image: eap-test
+          hostname: web
+          networkMode: mynetwork
+          portBindings: [8080->8080/tcp, 9990->9990/tcp, 9999->9999/tcp]
+          depends_on: [db]
+        db:
+          image: postgres
+          hostname: db
+          networkMode: mynetwork
+          portBindings: [5432->5432/tcp]
+          environment:
+            - POSTGRES_USER=test_user
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=test_db
     </property>
 	<property name="cubeSpecificProperties">
       web:
@@ -45,9 +55,8 @@
 
 	<container qualifier="web" default="true">
 		<configuration>
-<!--    <property name="chameleonTarget">jboss eap:7.0.0.Beta:remote</property>  -->
         <property name="chameleonTarget">jboss eap:7.0.1:remote</property>
-			<property name="managementAddress">172.17.0.3</property>
+			<property name="managementAddress">172.18.0.3</property>
 			<property name="managementPort">9990</property>
             <property name="username">admin</property>
             <property name="password">admin</property>
@@ -55,7 +64,7 @@
 
         <!--  the protocol used by arquillian to execute the tests on JBOSS -->
 	     <protocol type="Servlet 3.0">
-	        <property name="host">172.17.0.3</property>
+	        <property name="host">172.18.0.3</property>
 	        <property name="port">8080</property>
 	        <!--  contextRoot -->
 	     </protocol>

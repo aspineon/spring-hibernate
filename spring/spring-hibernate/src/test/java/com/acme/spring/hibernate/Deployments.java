@@ -83,7 +83,7 @@ public final class Deployments {
         //files.addAll(resolveDependencies("org.hibernate:hibernate-annotations:3.5.6-Final"));
         files.addAll(resolveDependencies("org.hibernate.common:hibernate-commons-annotations:5.0.1.Final-redhat-2"));
         files.addAll(resolveDependencies("org.javassist:javassist:3.18.1.GA-redhat-2"));
-
+        files.addAll(resolveDependencies("org.postgresql:postgresql:42.0.0"));
         return files.toArray(new File[files.size()]);
     }
 

@@ -180,5 +180,16 @@ Caused by: java.lang.IncompatibleClassChangeError: Failed to link org/hibernate/
     at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
     at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
 
+
+Fixed Hibernate version problems, upgraded to Spring 4 and Hibernate 5
 -----------------------------------------------------------------------------------------------------------------------------
+
+Fixed network problems by using docker compose version 2 format in the arquillian.xml
+thus allowing the network to be configured - the webcontainer now finds the db container.
+
+---------------------------------------------------------------------------------------------
+
+Fixed the hibernate configuration in the spring xml config for PostgresSQL dialect
+
+
 

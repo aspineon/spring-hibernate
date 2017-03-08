@@ -11,7 +11,7 @@
     <!--</jdbc:embedded-database>-->
 
     <!-- Lookups the data source form the JNDI -->
-    <jee:jndi-lookup id="dataSource" expected-type="javax.sql.DataSource" jndi-name="jdbc/SpringJDBCTest"/>
+    <jee:jndi-lookup id="dataSource" expected-type="javax.sql.DataSource" jndi-name="java:jboss/datasources/SpringHibernate"/>
 
     <!-- Settings for external data source, DriverManagerDataSource is used only for test purpose in real situation use pooling datasource like DBCP  -->
     <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
@@ -30,10 +30,10 @@
             </list>
         </property>
         <property name="hibernateProperties">
-            <value>
-                hibernate.dialect=org.hibernate.dialect.H2Dialect
-                hibernate.hbm2ddl.auto=create-drop
-            </value>
+	        <props>
+	         <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
+	         <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+	        </props>
         </property>
     </bean>
 
