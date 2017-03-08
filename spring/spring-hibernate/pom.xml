@@ -22,6 +22,7 @@
 
         <!-- Arquillian version -->
     	<version.arquillian>1.1.12.Final</version.arquillian>
+    	<version.arquillian.persistence>1.0.0.Alpha7</version.arquillian.persistence>
  	    <version.arquillian.spring>1.0.0.Beta1</version.arquillian.spring>
         <version.arquillian.transaction>1.0.0.Alpha1</version.arquillian.transaction>
         <version.arquillian_cube>1.0.0.Alpha18</version.arquillian_cube>
@@ -70,6 +71,14 @@
                 <version>${version.arquillian.spring}</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.jboss.arquillian.extension/arquillian-transaction-spi -->
+			<dependency>
+			    <groupId>org.jboss.arquillian.extension</groupId>
+			    <artifactId>arquillian-transaction-spi</artifactId>
+			    <version>1.0.3.Final</version>
+			</dependency>
+
 
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -124,6 +133,35 @@
 				<type>pom</type>
 			</dependency>
 
+			<dependency>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-persistence-api</artifactId>
+				<version>1.0.0.Alpha7</version>
+				<scope>test</scope>
+			</dependency>
+	        <dependency>
+	            <groupId>org.jboss.arquillian.extension</groupId>
+	            <artifactId>arquillian-persistence-core</artifactId>
+	            <version>${version.arquillian.persistence}</version>
+	            <scope>test</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.jboss.arquillian.extension</groupId>
+	            <artifactId>arquillian-persistence-dbunit</artifactId>
+	            <version>${version.arquillian.persistence}</version>
+	            <scope>test</scope>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.jboss.arquillian.extension</groupId>
+	            <artifactId>arquillian-persistence-spi</artifactId>
+	            <version>1.0.0.Alpha7</version>
+	        </dependency>
+			<!-- https://mvnrepository.com/artifact/org.jboss.arquillian.extension/arquillian-persistence-spring -->
+			<dependency>
+			    <groupId>org.jboss.arquillian.extension</groupId>
+			    <artifactId>arquillian-persistence-spring</artifactId>
+			    <version>1.1.0.Alpha1</version>
+			</dependency>
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
@@ -206,6 +244,12 @@
 	            <artifactId>postgresql</artifactId>
 	            <version>42.0.0</version>
 	        </dependency>
+			<!-- https://mvnrepository.com/artifact/org.dbunit/dbunit -->
+			<dependency>
+			    <groupId>org.dbunit</groupId>
+			    <artifactId>dbunit</artifactId>
+			    <version>2.5.0</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -241,7 +285,6 @@
          <dependency>
              <groupId>org.hibernate.common</groupId>
              <artifactId>hibernate-commons-annotations</artifactId>
-             <version>5.0.1.Final-redhat-2</version>
          </dependency>
 <!--
 		<dependency>
@@ -276,6 +319,31 @@
             <scope>test</scope>
         </dependency>
 
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-api</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-core</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-dbunit</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-spi</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-spring</artifactId>
+            </dependency>
+
+
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-transaction-spring</artifactId>
@@ -287,6 +355,13 @@
             <artifactId>arquillian-transaction-api</artifactId>
             <scope>test</scope>
         </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-transaction-spi</artifactId>
+                <scope>test</scope>
+            </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -333,6 +408,12 @@
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		</dependency>
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <scope>test</scope>
+            </dependency>
+
 
 
 		<!--  for remote debug classpath -->
@@ -346,17 +427,12 @@
 		<dependency>
 		    <groupId>org.jboss.arquillian.core</groupId>
 		    <artifactId>arquillian-core-impl-base</artifactId>
-		    <version>1.1.12.Final</version>
 		</dependency>
 	<!-- https://mvnrepository.com/artifact/org.jboss.arquillian.protocol/arquillian-protocol-servlet -->
 	<dependency>
 	    <groupId>org.jboss.arquillian.protocol</groupId>
 	    <artifactId>arquillian-protocol-servlet</artifactId>
-	    <version>1.1.12.Final</version>
 	</dependency>
-
-
-
     </dependencies>
 
     <profiles>

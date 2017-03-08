@@ -53,7 +53,7 @@ public final class Deployments {
      */
     public static WebArchive createDeployment() {
 
-        return ShrinkWrap.create(WebArchive.class, "spring-test.war")
+    	WebArchive archive = ShrinkWrap.create(WebArchive.class, "spring-test.war")
                 .addClasses(Stock.class, StockRepository.class, StockService.class,
                         HibernateStockRepository.class, DefaultStockService.class, HibernateTestHelper.class)
                 .addAsWebInfResource("jbossas-ds.xml")
@@ -63,7 +63,13 @@ public final class Deployments {
                 .addAsResource("create.sql")
                 .addAsResource("delete.sql")
                 .addAsResource("insert.sql")
+                .addAsResource("datasets")
                 .addAsLibraries(springDependencies());
+
+    	System.out.println("============================");
+    	System.out.println( archive );
+
+    	return archive;
     }
 
     /**
@@ -84,6 +90,7 @@ public final class Deployments {
         files.addAll(resolveDependencies("org.hibernate.common:hibernate-commons-annotations:5.0.1.Final-redhat-2"));
         files.addAll(resolveDependencies("org.javassist:javassist:3.18.1.GA-redhat-2"));
         files.addAll(resolveDependencies("org.postgresql:postgresql:42.0.0"));
+        files.addAll(resolveDependencies("org.dbunit:dbunit:2.4.9"));
         return files.toArray(new File[files.size()]);
     }
 
