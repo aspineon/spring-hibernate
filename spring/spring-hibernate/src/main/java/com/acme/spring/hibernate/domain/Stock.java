@@ -20,6 +20,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -34,8 +36,16 @@ public class Stock {
     /**
      * <p>Represents the stock id.</p>
      */
+    //@Id
+    /*
+    @SequenceGenerator(name="stock_id_seq",
+                       sequenceName="stock_id_seq",
+                       allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator="stock_id_seq") */
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
     /**

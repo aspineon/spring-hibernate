@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -60,7 +61,7 @@ public class UnifiedStockTestCase {
     }
 
 
-    @Resource(lookup = "java:jboss/datasources/SpringHibernate")
+    @Autowired
     private DataSource ds;
 
     /**
@@ -92,14 +93,52 @@ public class UnifiedStockTestCase {
      */
     @Test
     @UsingDataSet("stocktestcase_1/input.xml")
-    @ShouldMatchDataSet(value = "stocktestcase_1/expected-result.xml", orderBy = "id", excludeColumns={"date"})
+    @ShouldMatchDataSet(value = "stocktestcase_1/expected-result.xml", excludeColumns={"date"})
     public void test_case_1() {
         Stock acme = createStock("Acme", "ACM", 123.21D, new Date());
         Stock redhat = createStock("Red Hat", "RHC", 59.61D, new Date());
 
-        stockService.save(acme);
-        stockService.save(redhat);
+//        stockService.save(acme);
+//        stockService.save(redhat);
     }
+
+    /**
+     * Test case: http://beitrag-confluence/VVL/testcases/testcase1
+     *
+     */
+    @Test
+    @UsingDataSet("stocktestcase_2/input.xml")
+    @ShouldMatchDataSet(value = "stocktestcase_2/expected-result.xml", excludeColumns={"date"})
+	public void test_case_2() {
+
+		List<Stock> stocks = stockService.getAll();
+		assertEquals(stocks.size(), 2);
+
+		Stock acme = createStock("Acme", "ACM", 123.21D, new Date());
+		Stock redhat = createStock("Red Hat", "RHC", 59.61D, new Date());
+
+		stockService.save(acme);
+		stockService.save(redhat);
+	}
+
+    /**
+     * Test case: http://beitrag-confluence/VVL/testcases/testcase1
+     *
+     */
+    @Test
+    @UsingDataSet("stocktestcase_3/input.xml")
+    @ShouldMatchDataSet(value = "stocktestcase_3/expected-result.xml", excludeColumns={"date"})
+	public void test_case_3() {
+
+		List<Stock> stocks = stockService.getAll();
+		assertEquals(stocks.size(), 4);
+
+		Stock acme = createStock("XAcme", "XACM", 123.21D, new Date());
+		Stock redhat = createStock("XRed Hat", "XRHC", 59.61D, new Date());
+
+		stockService.save(acme);
+		stockService.save(redhat);
+	}
 
 
 

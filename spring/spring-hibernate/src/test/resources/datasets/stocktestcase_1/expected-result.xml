@@ -1,5 +1,3 @@
 <dataset>
     <Stock id="1" name="Apples" symbol="APPL" value="100.02" date="2016-02-12"/>
-    <Stock id="2" name="Acme" symbol="ACM" value="123.21" date="2016-02-12"/>
-    <Stock id="3" name="Red Hat" symbol="RHC" value="59.61" date="2016-02-12"/>
 </dataset>

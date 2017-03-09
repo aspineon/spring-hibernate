@@ -318,12 +318,12 @@
             <artifactId>arquillian-service-integration-spring-inject</artifactId>
             <scope>test</scope>
         </dependency>
-
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-persistence-api</artifactId>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-persistence-core</artifactId>
@@ -349,18 +349,18 @@
             <artifactId>arquillian-transaction-spring</artifactId>
             <scope>test</scope>
         </dependency>
-
+<!--
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-transaction-api</artifactId>
             <scope>test</scope>
         </dependency>
-
-            <dependency>
-                <groupId>org.jboss.arquillian.extension</groupId>
-                <artifactId>arquillian-transaction-spi</artifactId>
-                <scope>test</scope>
-            </dependency>
+ -->
+<!--             <dependency> -->
+<!--                 <groupId>org.jboss.arquillian.extension</groupId> -->
+<!--                 <artifactId>arquillian-transaction-spi</artifactId> -->
+<!--                 <scope>test</scope> -->
+<!--             </dependency> -->
 
 
         <dependency>
